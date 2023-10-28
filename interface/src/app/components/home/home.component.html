@@ -1,0 +1,19 @@
+<app-header (filter)="getFilter($event)"></app-header>
+
+<div *ngIf="showSpinner">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!showSpinner">
+  <div *ngIf="filterRestaurants.length === 0">
+    No results. <span class="go-back-link" (click)="home()">Go back home</span>
+  </div>
+  <div *ngIf="filterRestaurants.length > 0">
+    <div (click)="navigateToMeals(restaurant.name)" class="restaurant-card"
+      *ngFor="let restaurant of filterRestaurants">
+      <img [src]="getImageElement(restaurant.image)" alt="restaurant.name">
+      <h3>{{ restaurant.name }}</h3>
+      <p>{{ restaurant.description }}</p>
+    </div>
+  </div>
+</div>
+<!-- <div class="footer"> <app-footer></app-footer> </div> -->

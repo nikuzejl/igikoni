@@ -4,7 +4,7 @@ http://localhost:8080/swagger-ui/index.html
 # Update and deploy
 * `gradle build`
 * Push main branch to remote Git repo
-* A few minutes later, changes will be deployed to https://gurisha-server.onrender.com hosted on https://dashboard.render.com/
+* A few minutes later, changes will be deployed to https://igikoni.onrender.com hosted on https://dashboard.render.com/
 
 # Image upload/retrieve tutorial
 https://www.javainuse.com/fullstack/imageupload

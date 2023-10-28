@@ -1,0 +1,21 @@
+<header class="restaurant-header">
+  <div class="restaurant-logo" (click)="home()">
+    <img src="assets/logo.jpeg" alt="Restaurant Logo">
+  </div>
+  <div class="search-bar">
+    <input type="text" class="search-input" #filter>
+    <button class="search-button" (click)="filterResults(filter.value)">Search</button>
+  </div>
+  <mat-icon class="icon" (click)="filterResults(filter.value)">search</mat-icon>
+  <div *ngIf="!isLoggedIn">
+    <mat-icon (click)="profile()">person</mat-icon>
+  </div>
+  <div *ngIf="isLoggedIn" class="clickable" (click)="profile()">
+    {{user.firstName}} &#160; &#160;
+  </div>
+  <div class="cart-icon" (click)="navigateToCart()">
+    <mat-icon>shopping_cart</mat-icon> &#160;
+    <span class="cart-count">{{cartItems.length }}</span>
+  </div>
+</header>
+<hr>

@@ -1,0 +1,23 @@
+<app-header (filter)="getFilter($event)"></app-header>
+
+<div *ngIf="showSpinner">
+  <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="!showSpinner">
+  <div *ngIf="filteredMeals.length === 0">
+    No results. <span class="go-back-link" (click)="home()">Go back home</span>
+  </div>
+
+  <div *ngIf="filteredMeals.length > 0 && !clickedOnAddToCart">
+    <div class="menu">
+      <div class="meal-cart" *ngFor="let meal of filteredMeals">
+        <label class="meal-card-label">
+          <h3 class="meal-name">{{ meal.name }}</h3>
+          <img class="meal-image" [src]="getImageElement(meal.image)" alt="{{ meal.name }}">
+        </label>
+        <button class="add-to-cart-button" (click)="addToCart(meal)">Add to cart: ${{meal.price}}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div *ngIf="!showSpinner" class="cart-container">
+  <h2>Cart</h2>
+  <div *ngIf="cartItems.length == 0">Your cart is empty. Order a meal now</div>
+  <div *ngIf="cartItems.length > 0">
+    <ul class="cart-items">
+      <li *ngFor="let item of cartItems">
+        <span>{{ item.name }}</span>
+        <span>{{ item.price | currency }}</span>
+        <mat-icon class="delete-icon" (click)="removeItem(item)">delete</mat-icon>
+      </li>
+      <li class="total">
+        <span>Total</span>
+        <span>{{ totalPrice | currency }}</span>
+        <span></span>
+      </li>
+    </ul>
+    <div *ngIf="cartItems.length > 0">
+      <button (click)="pay(getOrderSummary(cartItems), totalPrice, 1)">
+        Proceed to payment
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-spinner *ngIf="showSpinner"></app-spinner>

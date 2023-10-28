@@ -1,16 +1,16 @@
 server.port: 10000
 
 stripe:
-    public.key:
-    secret.key:
+  public.key:
+  secret.key:
 
-orderTrackingBaseUrl: https://gurisha-ui.netlify.app/#/track/
+orderTrackingBaseUrl: https://igikoni.netlify.app/#/track/
 emailSenderAddress:
 
 spring:
   data.mongodb:
-          uri:
-          database:
+    uri:
+    database:
 
   mail:
     host:
@@ -26,6 +26,6 @@ email:
     enabled: false
 
 jwt:
-  cookieName: gurishaCookie
+  cookieName: igikoniCookie
   secret:
   expirationMs: 86400000

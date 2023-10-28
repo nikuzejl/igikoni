@@ -1,10 +1,10 @@
-package com.gura.gurisha;
+package com.igikoni;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GurishaApplicationTests {
+class igikoniApplicationTests {
 
 	@Test
 	void contextLoads() {
