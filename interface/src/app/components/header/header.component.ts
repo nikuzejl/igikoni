@@ -10,7 +10,6 @@ import { StorageService } from 'src/app/services/storage.service'
 })
 export class HeaderComponent {
   @Output() filter = new EventEmitter<string>()
-  showPopup = false
   user: any
   signedIn = false
   imageObject: any
@@ -18,25 +17,23 @@ export class HeaderComponent {
   meals: any[] = []
   searchQuery: string = ''
   autocompleteItems: any[] = []
-  cartItemCount: number = 0
   cartItems: any[] = []
-  dt: any
+  cartCountSize: any[] = ['0.5em']
   dataDisplay: any
-
-  private roles: string[] = []
   isLoggedIn = false
   showAdminBoard = false
   showModeratorBoard = false
   username?: string
+  private roles: string[] = []
 
   constructor(private router: Router,
     private cartService: CartService,
     private storageService: StorageService
   ) {
     this.cartService.mealsInCart = this.cartItems
+    this.cartService.cartCountSize = this.cartCountSize;
   }
   ngOnInit(): void {
-    this.cartItemCount = this.cartService.getMealsInCart().length
     this.isLoggedIn = this.storageService.isLoggedIn()
 
     if (this.isLoggedIn) {
@@ -75,7 +72,6 @@ export class HeaderComponent {
   }
 
   filterResults(filter: any) {
-    console.log(filter)
     this.filter.emit(filter)
   }
 

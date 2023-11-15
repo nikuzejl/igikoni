@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, ElementRef, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { CartService } from 'src/app/services/cart.service'
 import { HttpService } from 'src/app/services/http.service'
 import { environment } from 'src/environments/environment'
 import { MatDialog } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar'
-
-export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion'
-}
 
 @Component({
   selector: 'app-meal',
@@ -65,8 +61,8 @@ export class MealComponent implements OnInit {
     this.snackBar.open(meal.name + ': $' + meal.price + ' added to cart!', 'OK', {
       duration: 2000,
       panelClass: ['green-snackbar'],
-      verticalPosition: 'top',
-      horizontalPosition: 'right'
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center'
     })
   }
 
@@ -77,10 +73,20 @@ export class MealComponent implements OnInit {
     this.filteredMeals = this.meals.filter(
       meal => meal?.name.toLowerCase().includes(filter.toLowerCase())
     )
+
+    if(this.filteredMeals.length === 0){
+      this.snackBar.open('No result match your search. Try again', '', {
+        duration: 2000,
+        panelClass: ['green-snackbar'],
+        verticalPosition: 'bottom',
+        horizontalPosition: 'center'
+      });
+    }
   }
 
   home(){
     this.router.navigate(['/home'])
   }
+  
 }
 

@@ -19,16 +19,13 @@ export class HomeComponent implements OnInit {
   meals: any[] = []
   searchQuery: string = ''
   autocompleteItems: any[] = []
-  cartItemCount: number = 0
   dataDisplay: any
 
   constructor(
     private router: Router,
-    private cartService: CartService,
     private httpService: HttpService
   ) { }
   ngOnInit(): void {
-    this.cartItemCount = this.cartService.getMealsInCart().length
     this.getAllRestaurants()
     this.getAllMeals()
   }
