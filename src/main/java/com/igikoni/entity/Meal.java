@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Document(collection = "meals")
@@ -14,11 +16,11 @@ public class Meal {
     private String name;
     private String mealId;
     private String restaurant;
-    private String ingredients;
+    private List<String> ingredients;
     private Object image;
     private String price;
 
-    public Meal(String name, String mealId, String restaurant, String ingredients, String price, Object image) {
+    public Meal(String name, String mealId, String restaurant, List<String> ingredients, String price, Object image) {
         this.name = name;
         this.mealId = mealId;
         this.restaurant = restaurant;

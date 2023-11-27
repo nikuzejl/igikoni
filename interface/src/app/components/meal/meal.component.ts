@@ -40,7 +40,7 @@ export class MealComponent implements OnInit {
       this.restaurantName = params.get('restaurant')
       const apiUrl = environment.serverUrl + '/api/v1/meal/' + this.restaurantName
       this.httpService.getRequest(apiUrl).subscribe(
-        (result) => {
+        result => {
           this.meals = result
           this.filteredMeals = result
           this.showSpinner = false

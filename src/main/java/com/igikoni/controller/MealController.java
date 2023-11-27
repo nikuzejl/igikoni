@@ -29,7 +29,7 @@ public class MealController {
     public ResponseEntity<String> saveMeal(
             @RequestParam("meal") String meal,
             @RequestParam("restaurant") String restaurant,
-            @RequestParam("ingredients") String ingredients,
+            @RequestParam("ingredients") List<String> ingredients,
             @RequestParam("price") double price,
             @RequestParam("image") MultipartFile file) throws IOException {
         Document document = new Document();
@@ -43,7 +43,7 @@ public class MealController {
         imgDoc.append("type", file.getContentType());
         document.append("image", imgDoc);
 
-        var savedMeal = mealService.saveMeal(meal, Objects.toString(Math.random() * 100), restaurant, ingredients, Objects.toString(price), imgDoc);
+        mealService.saveMeal(meal, Objects.toString(Math.random() * 100), restaurant, ingredients, Objects.toString(price), imgDoc);
         return new ResponseEntity<>("Meal saved successfully", HttpStatus.OK);
     }
 

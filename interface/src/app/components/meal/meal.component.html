@@ -16,7 +16,9 @@
           <h3 class="meal-name">{{ meal.name }}</h3>
           <img class="meal-image" [src]="getImageElement(meal.image)" alt="{{ meal.name }}">
         </label>
-        <button class="add-to-cart-button" (click)="addToCart(meal)">Add to cart: ${{meal.price}}</button>
+       <div class="ingredients" *ngFor="let ingredient of meal.ingredients">{{ingredient}}</div>
+       <br> 
+       <button (click)="addToCart(meal)">Add to cart: ${{meal.price}}</button>
       </div>
     </div>
   </div>

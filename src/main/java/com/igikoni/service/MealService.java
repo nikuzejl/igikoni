@@ -18,7 +18,7 @@ public class MealService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public Meal saveMeal(String name, String mealId, String restaurant, String ingredients, String price, Object image) {
+    public Meal saveMeal(String name, String mealId, String restaurant, List<String> ingredients, String price, Object image) {
         Meal newMeal = new Meal(name, mealId, restaurant, ingredients, price, image);
         return mealRepository.save(newMeal);
     }
