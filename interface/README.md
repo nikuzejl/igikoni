@@ -1,9 +1,13 @@
+# Docker
+docker build -t nikuzejl/igikoni-ui:latest .
+docker run --rm -it -p 4200:80 nikuzejl/igikoni-ui:latest
+
 # Angular material
 https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/
 
 # App deployed to Netlify
 `ng build --configuration=production`
-* At https://app.netlify.com/sites/igikoni/deploys, deploy manually the built folder ./docs
+* At https://app.netlify.com/sites/igikoni/deploys, deploy manually the built folder ./dist/igikoni-ui
 * App becomes at https://igikoni.netlify.app
 
 # Adding new restaurants and meals

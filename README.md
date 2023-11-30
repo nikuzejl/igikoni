@@ -12,7 +12,12 @@ https://www.javainuse.com/fullstack/imageupload
 # Deploy Angular with Spring Boot in the same executable JAR
 https://marco.dev/angular-with-java
 
-403 error https://community.render.com/t/direct-link-403-issue/9374/3
+# Docker
+docker build -t nikuzejl/igikoni-server:latest .
+docker run -p 10000:10000 nikuzejl/igikoni-server:latest
+
+# 403 error
+https://community.render.com/t/direct-link-403-issue/9374/3
 
 # Other links
 https://www.youtube.com/watch?v=KxqlJblhzfI&t=10s

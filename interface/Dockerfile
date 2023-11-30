@@ -1,8 +1,12 @@
-FROM node:16.14 AS build
+FROM node:16.14 AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-EXPOSE 4200
-CMD ["npm", "start"]
+
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+RUN rm -rf ./*
+COPY --from=builder /app/dist/igikoni-ui .
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

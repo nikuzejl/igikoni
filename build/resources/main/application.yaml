@@ -1,22 +1,22 @@
 server.port: 10000
 
 stripe:
-    public.key:
-    secret.key:
+  public.key: something
+  secret.key: something
 
 orderTrackingBaseUrl: https://igikoni.netlify.app/#/track/
-emailSenderAddress:
+emailSenderAddress: something
 
 spring:
   data.mongodb:
-          uri:
-          database:
+    uri: something
+    database: something
 
   mail:
-    host:
+    host: something
     port: 587
-    username:
-    password:
+    username: something
+    password: something
     properties.mail.smtp:
       auth: true
       enable: true
@@ -27,5 +27,5 @@ email:
 
 jwt:
   cookieName: igikoniCookie
-  secret:
+  secret: something
   expirationMs: 86400000
