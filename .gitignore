@@ -76,3 +76,5 @@ interface/typings
 # System files
 interface/.DS_Store
 interface/Thumbs.db
+# Local Netlify folder
+.netlify
