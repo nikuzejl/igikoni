@@ -1,24 +1,32 @@
-<div *ngIf="!showSpinner" class="cart-container">
-  <h2>Cart</h2>
-  <div *ngIf="cartItems.length == 0">Your cart is empty. Order a meal now</div>
-  <div *ngIf="cartItems.length > 0">
+<div class="page-container" *ngIf="!showSpinner">
+  <h2 class="page-title">Your cart</h2>
+  <p class="page-subtitle" *ngIf="cartItems.length > 0">{{ cartItems.length }} item(s)</p>
+
+  <div *ngIf="cartItems.length == 0" class="empty-state">
+    <mat-icon>shopping_cart</mat-icon>
+    <p>Your cart is empty.</p>
+    <span class="link-action" routerLink="/home">Browse restaurants</span>
+  </div>
+
+  <div *ngIf="cartItems.length > 0" class="cart-panel">
     <ul class="cart-items">
-      <li *ngFor="let item of cartItems">
-        <span>{{ item.name }}</span>
-        <span>{{ item.price | currency }}</span>
-        <mat-icon class="delete-icon" (click)="removeItem(item)">delete</mat-icon>
+      <li *ngFor="let item of cartItems" class="cart-item">
+        <span class="cart-item__name">{{ item.name }}</span>
+        <span class="cart-item__price">{{ item.price | currency }}</span>
+        <button class="cart-item__remove" (click)="removeItem(item)" matTooltip="Remove">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
       </li>
-      <li class="total">
+      <li class="cart-item cart-item--total">
         <span>Total</span>
-        <span>{{ totalPrice | currency }}</span>
+        <span class="cart-item__price">{{ totalPrice | currency }}</span>
         <span></span>
       </li>
     </ul>
-    <div *ngIf="cartItems.length > 0">
-      <button (click)="pay(getOrderSummary(cartItems), totalPrice, 1)">
-        Proceed to payment
-      </button>
-    </div>
+    <button mat-raised-button color="primary" class="checkout-btn"
+      (click)="pay(getOrderSummary(cartItems), totalPrice, 1)">
+      Proceed to payment
+    </button>
   </div>
 </div>
 

@@ -1,19 +1,31 @@
 <app-header (filter)="getFilter($event)"></app-header>
 
-<div *ngIf="showSpinner">
+<div *ngIf="showSpinner" class="page-container">
   <app-spinner></app-spinner>
 </div>
-<div *ngIf="!showSpinner">
-  <div *ngIf="filterRestaurants.length === 0">
-    No results. <span class="go-back-link" (click)="home()">Go back home</span>
+
+<div *ngIf="!showSpinner" class="page-container">
+  <section class="hero">
+    <h1 class="hero-title">Discover local flavors</h1>
+    <p class="hero-subtitle">Browse restaurants near you and order your favorite meals.</p>
+  </section>
+
+  <div *ngIf="filterRestaurants.length === 0" class="empty-state">
+    <mat-icon>restaurant</mat-icon>
+    <p>No restaurants found.</p>
+    <span class="link-action" (click)="home()">Go back home</span>
   </div>
-  <div *ngIf="filterRestaurants.length > 0">
-    <div (click)="navigateToMeals(restaurant.name)" class="restaurant-card"
+
+  <div *ngIf="filterRestaurants.length > 0" class="card-grid">
+    <article
+      (click)="navigateToMeals(restaurant.name)"
+      class="food-card"
       *ngFor="let restaurant of filterRestaurants">
-      <img [src]="getImageElement(restaurant.image)" alt="restaurant.name">
-      <h3>{{ restaurant.name }}</h3>
-      <p>{{ restaurant.description }}</p>
-    </div>
+      <img [src]="getImageElement(restaurant.image)" [alt]="restaurant.name" class="food-card__image">
+      <div class="food-card__body">
+        <h3 class="food-card__title">{{ restaurant.name }}</h3>
+        <p class="food-card__description">{{ restaurant.description }}</p>
+      </div>
+    </article>
   </div>
 </div>
-<!-- <div class="footer"> <app-footer></app-footer> </div> -->

@@ -1,25 +1,36 @@
 <app-header (filter)="getFilter($event)"></app-header>
 
-<div *ngIf="showSpinner">
+<div *ngIf="showSpinner" class="page-container">
   <app-spinner></app-spinner>
 </div>
 
-<div *ngIf="!showSpinner">
-  <div *ngIf="filteredMeals.length === 0">
-    No results. <span class="go-back-link" (click)="home()">Go back home</span>
+<div *ngIf="!showSpinner" class="page-container">
+  <div *ngIf="filteredMeals.length === 0" class="empty-state">
+    <mat-icon>lunch_dining</mat-icon>
+    <p>No meals found.</p>
+    <span class="link-action" (click)="home()">Go back home</span>
   </div>
 
   <div *ngIf="filteredMeals.length > 0 && !clickedOnAddToCart">
-    <div class="menu">
-      <div class="meal-cart" *ngFor="let meal of filteredMeals">
-        <label class="meal-card-label">
-          <h3 class="meal-name">{{ meal.name }}</h3>
-          <img class="meal-image" [src]="getImageElement(meal.image)" alt="{{ meal.name }}">
-        </label>
-       <div class="ingredients" *ngFor="let ingredient of meal.ingredients">{{ingredient}}</div>
-       <br> 
-       <button (click)="addToCart(meal)">Add to cart: ${{meal.price}}</button>
-      </div>
+    <h2 class="page-title">Menu</h2>
+    <p class="page-subtitle">Add your favorites to the cart</p>
+
+    <div class="card-grid">
+      <article class="meal-card" *ngFor="let meal of filteredMeals">
+        <img class="meal-card__image" [src]="getImageElement(meal.image)" [alt]="meal.name">
+        <div class="meal-card__body">
+          <h3 class="meal-card__title">{{ meal.name }}</h3>
+          <div class="meal-card__ingredients" *ngIf="meal.ingredients?.length">
+            <span class="chip" *ngFor="let ingredient of meal.ingredients">{{ ingredient }}</span>
+          </div>
+          <div class="meal-card__footer">
+            <span class="meal-card__price">${{ meal.price }}</span>
+            <button mat-raised-button color="primary" (click)="addToCart(meal)">
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </div>

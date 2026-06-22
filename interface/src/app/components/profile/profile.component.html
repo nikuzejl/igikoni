@@ -1,21 +1,33 @@
-<div class="container" *ngIf="currentUser; else loggedOut">
-  <header class="jumbotron">
-    <h3>
-      <strong>{{ currentUser.username }}</strong> Profile
-    </h3>
-  </header>
-  <p>
-    <strong>Email:</strong>
-    {{ currentUser.email }}
-  </p>
-  <strong>Roles:</strong>
-  <ul>
-    <li *ngFor="let role of currentUser.roles">
-      {{ role }}
-    </li>
-  </ul>
-</div>
+<div class="page-container">
+  <div class="profile-card" *ngIf="currentUser; else loggedOut">
+    <div class="profile-header">
+      <div class="profile-avatar">
+        <mat-icon>person</mat-icon>
+      </div>
+      <div>
+        <h2 class="page-title">{{ currentUser.username }}</h2>
+        <p class="page-subtitle">Your account details</p>
+      </div>
+    </div>
 
-<ng-template #loggedOut>
-  Please login.
-</ng-template>
+    <div class="profile-detail">
+      <span class="profile-label">Email</span>
+      <span>{{ currentUser.email }}</span>
+    </div>
+
+    <div class="profile-detail">
+      <span class="profile-label">Roles</span>
+      <div class="profile-roles">
+        <span class="chip" *ngFor="let role of currentUser.roles">{{ role }}</span>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loggedOut>
+    <div class="empty-state">
+      <mat-icon>lock</mat-icon>
+      <p>Please sign in to view your profile.</p>
+      <a routerLink="/login" class="link-action">Sign in</a>
+    </div>
+  </ng-template>
+</div>

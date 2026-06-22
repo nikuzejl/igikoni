@@ -1,65 +1,66 @@
-<div class="container" *ngIf="!restaurantSaved">
-  <h2>Add a new restaurant information</h2>
-  <form #myForm="ngForm" (submit)="submitRestoForm()">
-    <div class="form-group">
-      <label>Name</label>
-      <input type="text" [(ngModel)]="restoFormData.name" name="name" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label>Address</label>
-      <input type="text" [(ngModel)]="restoFormData.address" name="address" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label>Phone</label>
-      <input type="text" [(ngModel)]="restoFormData.phone" name="phone" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="text" [(ngModel)]="restoFormData.email" name="email" class="form-control" required>
-    </div>
-    <div>
-      <label for="picture">Picture</label> &#160; &#160;&#160; &#160;
-      <input type="file" id="picture" name="picture" (change)="onRestoFileSelected($event)" required>
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary">Add restaurant</button>
-  </form>
-</div>
+<div class="page-container">
+  <h1 class="page-title">Restaurant management</h1>
+  <p class="page-subtitle">Add restaurants and meals to the platform</p>
 
-<div *ngIf="restaurantSaved">
-  Restaurant saved successfully!
-</div>
+  <div class="form-panel" *ngIf="!restaurantSaved">
+    <h2>Add restaurant</h2>
+    <form #myForm="ngForm" (submit)="submitRestoForm()">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" [(ngModel)]="restoFormData.name" name="name" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput type="text" [(ngModel)]="restoFormData.address" name="address" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input matInput type="text" [(ngModel)]="restoFormData.phone" name="phone" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="restoFormData.email" name="email" required>
+      </mat-form-field>
+      <div class="file-input">
+        <label for="resto-picture">Picture</label>
+        <input type="file" id="resto-picture" name="picture" (change)="onRestoFileSelected($event)" required>
+      </div>
+      <button mat-raised-button color="primary" type="submit">Add restaurant</button>
+    </form>
+  </div>
 
-<br><br>
+  <div class="form-alert form-alert--success" *ngIf="restaurantSaved">
+    Restaurant saved successfully!
+  </div>
 
-<div class="container" *ngIf="!mealSaved">
-  <h2>Add a new meal</h2>
-  <form #myForm="ngForm" (submit)="submitMealForm()">
-    <div class="form-group">
-      <label>Meal</label>
-      <input type="text" [(ngModel)]="mealFormData.meal" name="meal" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label>Restaurant</label>
-      <input type="text" [(ngModel)]="mealFormData.restaurant" name="restaurant" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label>Ingredients</label>
-      <input type="text" [(ngModel)]="mealFormData.ingredients" name="ingredients" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label>Price</label>
-      <input type="text" [(ngModel)]="mealFormData.price" name="price" class="form-control" required>
-    </div>
-    <div>
-      <label for="picture">Picture</label> &#160; &#160;&#160; &#160;
-      <input type="file" id="picture" name="picture" (change)="onMealFileSelected($event)" required>
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary">Add meal</button>
-  </form>
-</div>
+  <div class="form-panel" *ngIf="!mealSaved">
+    <h2>Add meal</h2>
+    <form #mealForm="ngForm" (submit)="submitMealForm()">
+      <mat-form-field appearance="outline">
+        <mat-label>Meal</mat-label>
+        <input matInput type="text" [(ngModel)]="mealFormData.meal" name="meal" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Restaurant</mat-label>
+        <input matInput type="text" [(ngModel)]="mealFormData.restaurant" name="restaurant" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Ingredients</mat-label>
+        <input matInput type="text" [(ngModel)]="mealFormData.ingredients" name="ingredients" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input matInput type="text" [(ngModel)]="mealFormData.price" name="price" required>
+      </mat-form-field>
+      <div class="file-input">
+        <label for="meal-picture">Picture</label>
+        <input type="file" id="meal-picture" name="picture" (change)="onMealFileSelected($event)" required>
+      </div>
+      <button mat-raised-button color="primary" type="submit">Add meal</button>
+    </form>
+  </div>
 
-<div *ngIf="!mealSaved">
-  Meal saved successfully!
+  <div class="form-alert form-alert--success" *ngIf="mealSaved">
+    Meal saved successfully!
+  </div>
 </div>

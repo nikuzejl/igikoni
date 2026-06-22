@@ -1,21 +1,30 @@
-<header class="restaurant-header">
-  <div class="restaurant-logo" (click)="home()">
-    <img src="assets/logo.jpeg" alt="Restaurant Logo">
-  </div>
-  <div class="search-bar">
-    <input type="text" class="search-input" #filter>
-    <button class="search-button" (click)="filterResults(filter.value)">Search</button>
-  </div>
-  <mat-icon class="icon" (click)="filterResults(filter.value)">search</mat-icon>
-  <div *ngIf="!isLoggedIn">
-    <mat-icon (click)="profile()">person</mat-icon>
-  </div>
-  <div *ngIf="isLoggedIn" class="clickable" (click)="profile()">
-    {{user.firstName}} &#160; &#160;
-  </div>
-  <div class="cart-icon" (click)="navigateToCart()">
-    <mat-icon>shopping_cart</mat-icon> &#160;
-    <span [ngStyle]="{'font-size': cartCountSize[0]}" class="cart-count">{{cartItems.length}}</span>
+<header class="app-header">
+  <div class="header-inner">
+    <div class="brand" (click)="home()">
+      <img src="assets/logo.jpeg" alt="Igikoni logo" class="brand-logo">
+      <span class="brand-name">Igikoni</span>
+    </div>
+
+    <div class="search-bar">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search restaurants..."
+        #filter
+        (keyup.enter)="filterResults(filter.value)">
+      <button class="search-button" (click)="filterResults(filter.value)">Search</button>
+    </div>
+
+    <nav class="header-actions">
+      <button class="action-btn" (click)="profile()" matTooltip="Account">
+        <mat-icon>person</mat-icon>
+        <span class="action-label" *ngIf="isLoggedIn">{{ user.firstName }}</span>
+      </button>
+      <button class="action-btn cart-btn" (click)="navigateToCart()" matTooltip="Cart">
+        <mat-icon>shopping_cart</mat-icon>
+        <span class="cart-badge" *ngIf="cartItems.length > 0">{{ cartItems.length }}</span>
+      </button>
+    </nav>
   </div>
 </header>
-<hr>

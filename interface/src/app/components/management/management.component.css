@@ -1,55 +1,38 @@
-.container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    font-size: 16px;
-    transition: border-color 0.2s;
-  }
-  
-  input[type="text"]:focus,
-  textarea:focus {
-    outline: none;
-    border-color: #6cb2eb;
-  }
-  
-  button[type="submit"] {
-    background-color: #6cb2eb;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #4285c8;
-  }
-  
+.form-panel {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  max-width: 560px;
+}
+
+.form-panel h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-panel mat-form-field {
+  display: block;
+  width: 100%;
+}
+
+.file-input {
+  margin: 1rem 0 1.5rem;
+}
+
+.file-input label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.file-input input[type="file"] {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+}

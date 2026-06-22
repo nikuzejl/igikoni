@@ -1,4 +1,4 @@
 :host {
-    font-family: "Arial", sans-serif;
+  display: block;
+  min-height: 100vh;
 }
-  

@@ -1,1 +1,8 @@
-  <p> Order {{orderNumber}} has been successfuly cancelled</p>
+<div class="result-page">
+  <div class="result-card result-card--cancel">
+    <mat-icon>cancel</mat-icon>
+    <h2>Order cancelled</h2>
+    <p>Order <strong>{{ orderNumber }}</strong> has been cancelled.</p>
+    <button mat-stroked-button routerLink="/home">Back to home</button>
+  </div>
+</div>
