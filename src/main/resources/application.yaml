@@ -1,0 +1,31 @@
+server.port: 10000
+
+stripe:
+    public.key:
+    secret.key:
+
+orderTrackingBaseUrl: https://gurisha-ui.netlify.app/#/track/
+emailSenderAddress:
+
+spring:
+  data.mongodb:
+          uri:
+          database:
+
+  mail:
+    host:
+    port: 587
+    username:
+    password:
+    properties.mail.smtp:
+      auth: true
+      enable: true
+
+email:
+  notification:
+    enabled: false
+
+jwt:
+  cookieName: gurishaCookie
+  secret:
+  expirationMs: 86400000

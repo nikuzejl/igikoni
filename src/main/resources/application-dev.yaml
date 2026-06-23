@@ -1,0 +1,5 @@
+orderTrackingBaseUrl: http://localhost:4200/#/track/
+
+email:
+  notification:
+    enabled: true
