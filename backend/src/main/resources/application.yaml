@@ -1,10 +1,10 @@
-server.port: 10000
+server.port: 9900
 
 stripe:
   public.key: something
   secret.key: something
 
-orderTrackingBaseUrl: https://igikoni.netlify.app/#/track/
+orderTrackingBaseUrl: https://igikoni.onrender.com/#/track/
 emailSenderAddress: something
 
 spring:

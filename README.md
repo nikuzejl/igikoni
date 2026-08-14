@@ -20,11 +20,6 @@ mvn spring-boot:run
 ```
 
 ## Build and Deployment
-### Frontend
-- `cd frontend`  
-- `ng build --configuration production`  
-- Upload `fronted/dist` files to https://app.netlify.com/projects/igikoni/overview
 
-### Backend
 - Push the `main` branch to the remote Git repository  
 - The application will be automatically deployed a few minutes later. Check status on https://dashboard.render.com/
