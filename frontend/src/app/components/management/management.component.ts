@@ -3,9 +3,10 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
 
 @Component({
-  selector: 'app-management',
-  templateUrl: './management.component.html',
-  styleUrls: ['./management.component.css']
+    selector: 'app-management',
+    templateUrl: './management.component.html',
+    styleUrls: ['./management.component.css'],
+    standalone: false
 })
 export class ManagementComponent implements OnInit {
   selectedRestoPicture: File | null = null

@@ -1,31 +1,39 @@
 <app-header (filter)="getFilter($event)"></app-header>
 
-<div *ngIf="showSpinner" class="page-container">
-  <app-spinner></app-spinner>
-</div>
-
-<div *ngIf="!showSpinner" class="page-container">
-  <section class="hero">
-    <h1 class="hero-title">Discover local flavors</h1>
-    <p class="hero-subtitle">Browse restaurants near you and order your favorite meals.</p>
-  </section>
-
-  <div *ngIf="filterRestaurants.length === 0" class="empty-state">
-    <mat-icon>restaurant</mat-icon>
-    <p>No restaurants found.</p>
-    <span class="link-action" (click)="home()">Go back home</span>
+@if (showSpinner) {
+  <div class="page-container">
+    <app-spinner></app-spinner>
   </div>
+}
 
-  <div *ngIf="filterRestaurants.length > 0" class="card-grid">
-    <article
-      (click)="navigateToMeals(restaurant.name)"
-      class="food-card"
-      *ngFor="let restaurant of filterRestaurants">
-      <img [src]="getImageElement(restaurant.image)" [alt]="restaurant.name" class="food-card__image">
-      <div class="food-card__body">
-        <h3 class="food-card__title">{{ restaurant.name }}</h3>
-        <p class="food-card__description">{{ restaurant.description }}</p>
+@if (!showSpinner) {
+  <div class="page-container">
+    <section class="hero">
+      <h1 class="hero-title">Discover local flavors</h1>
+      <p class="hero-subtitle">Browse restaurants near you and order your favorite meals.</p>
+    </section>
+    @if (filterRestaurants.length === 0) {
+      <div class="empty-state">
+        <mat-icon>restaurant</mat-icon>
+        <p>No restaurants found.</p>
+        <span class="link-action" (click)="home()">Go back home</span>
       </div>
-    </article>
+    }
+    @if (filterRestaurants.length > 0) {
+      <div class="card-grid">
+        @for (restaurant of filterRestaurants; track restaurant) {
+          <article
+            (click)="navigateToMeals(restaurant.name)"
+            class="food-card"
+            >
+            <img [src]="getImageElement(restaurant.image)" [alt]="restaurant.name" class="food-card__image">
+            <div class="food-card__body">
+              <h3 class="food-card__title">{{ restaurant.name }}</h3>
+              <p class="food-card__description">{{ restaurant.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    }
   </div>
-</div>
+}

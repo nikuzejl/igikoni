@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { AppComponent } from './app.component'
-import { HttpClientModule } from '@angular/common/http'
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CartComponent } from './components/cart/cart.component'
@@ -33,48 +33,41 @@ import { environment } from 'src/environments/environment'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CredentialsComponent } from './credentials/credentials.component'
 
-@NgModule({
-	declarations: [
-		AppComponent,
-		HomeComponent,
-		ManagementComponent,
-		MealComponent,
-		CartComponent,
-		SpinnerComponent,
-		CancelComponent,
-		SucessComponent,
-		FooterComponent,
-		HeaderComponent,
-		LoginComponent,
-		RegisterComponent,
-		ProfileComponent,
-  CredentialsComponent
-	],
-	imports: [
-		BrowserModule,
-		MatFormFieldModule,
-		AppRoutingModule,
-		FormsModule,
-		HttpClientModule,
-		MatSlideToggleModule,
-		MatProgressSpinnerModule,
-		MatTooltipModule,
-		BrowserAnimationsModule,
-		MatCardModule,
-		MatButtonModule,
-		FontAwesomeModule,
-		ReactiveFormsModule,
-		MatIconModule,
-		MatInputModule,
-		NgIf,
-		MatDialogModule,
-		BrowserModule,
-		FormsModule,
-		MatSnackBarModule,
-		BrowserAnimationsModule,
-		NgxStripeModule.forRoot(environment.STRIPE_PUBLIC_KEY)
-	],
-	providers: [],
-	bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        ManagementComponent,
+        MealComponent,
+        CartComponent,
+        SpinnerComponent,
+        CancelComponent,
+        SucessComponent,
+        FooterComponent,
+        HeaderComponent,
+        LoginComponent,
+        RegisterComponent,
+        ProfileComponent,
+        CredentialsComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        MatFormFieldModule,
+        AppRoutingModule,
+        FormsModule,
+        MatSlideToggleModule,
+        MatProgressSpinnerModule,
+        MatTooltipModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatButtonModule,
+        FontAwesomeModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatInputModule,
+        NgIf,
+        MatDialogModule,
+        BrowserModule,
+        FormsModule,
+        MatSnackBarModule,
+        BrowserAnimationsModule,
+        NgxStripeModule.forRoot(environment.STRIPE_PUBLIC_KEY)], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

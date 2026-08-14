@@ -1,36 +1,48 @@
 <app-header (filter)="getFilter($event)"></app-header>
 
-<div *ngIf="showSpinner" class="page-container">
-  <app-spinner></app-spinner>
-</div>
-
-<div *ngIf="!showSpinner" class="page-container">
-  <div *ngIf="filteredMeals.length === 0" class="empty-state">
-    <mat-icon>lunch_dining</mat-icon>
-    <p>No meals found.</p>
-    <span class="link-action" (click)="home()">Go back home</span>
+@if (showSpinner) {
+  <div class="page-container">
+    <app-spinner></app-spinner>
   </div>
+}
 
-  <div *ngIf="filteredMeals.length > 0 && !clickedOnAddToCart">
-    <h2 class="page-title">Menu</h2>
-    <p class="page-subtitle">Add your favorites to the cart</p>
-
-    <div class="card-grid">
-      <article class="meal-card" *ngFor="let meal of filteredMeals">
-        <img class="meal-card__image" [src]="getImageElement(meal.image)" [alt]="meal.name">
-        <div class="meal-card__body">
-          <h3 class="meal-card__title">{{ meal.name }}</h3>
-          <div class="meal-card__ingredients" *ngIf="meal.ingredients?.length">
-            <span class="chip" *ngFor="let ingredient of meal.ingredients">{{ ingredient }}</span>
-          </div>
-          <div class="meal-card__footer">
-            <span class="meal-card__price">${{ meal.price }}</span>
-            <button mat-raised-button color="primary" (click)="addToCart(meal)">
-              Add to cart
-            </button>
-          </div>
+@if (!showSpinner) {
+  <div class="page-container">
+    @if (filteredMeals.length === 0) {
+      <div class="empty-state">
+        <mat-icon>lunch_dining</mat-icon>
+        <p>No meals found.</p>
+        <span class="link-action" (click)="home()">Go back home</span>
+      </div>
+    }
+    @if (filteredMeals.length > 0 && !clickedOnAddToCart) {
+      <div>
+        <h2 class="page-title">Menu</h2>
+        <p class="page-subtitle">Add your favorites to the cart</p>
+        <div class="card-grid">
+          @for (meal of filteredMeals; track meal) {
+            <article class="meal-card">
+              <img class="meal-card__image" [src]="getImageElement(meal.image)" [alt]="meal.name">
+              <div class="meal-card__body">
+                <h3 class="meal-card__title">{{ meal.name }}</h3>
+                @if (meal.ingredients?.length) {
+                  <div class="meal-card__ingredients">
+                    @for (ingredient of meal.ingredients; track ingredient) {
+                      <span class="chip">{{ ingredient }}</span>
+                    }
+                  </div>
+                }
+                <div class="meal-card__footer">
+                  <span class="meal-card__price">${{ meal.price }}</span>
+                  <button mat-raised-button color="primary" (click)="addToCart(meal)">
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+            </article>
+          }
         </div>
-      </article>
-    </div>
+      </div>
+    }
   </div>
-</div>
+}

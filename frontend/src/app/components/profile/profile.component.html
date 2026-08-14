@@ -1,33 +1,34 @@
 <div class="page-container">
-  <div class="profile-card" *ngIf="currentUser; else loggedOut">
-    <div class="profile-header">
-      <div class="profile-avatar">
-        <mat-icon>person</mat-icon>
+  @if (currentUser) {
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <mat-icon>person</mat-icon>
+        </div>
+        <div>
+          <h2 class="page-title">{{ currentUser.username }}</h2>
+          <p class="page-subtitle">Your account details</p>
+        </div>
       </div>
-      <div>
-        <h2 class="page-title">{{ currentUser.username }}</h2>
-        <p class="page-subtitle">Your account details</p>
+      <div class="profile-detail">
+        <span class="profile-label">Email</span>
+        <span>{{ currentUser.email }}</span>
+      </div>
+      <div class="profile-detail">
+        <span class="profile-label">Roles</span>
+        <div class="profile-roles">
+          @for (role of currentUser.roles; track role) {
+            <span class="chip">{{ role }}</span>
+          }
+        </div>
       </div>
     </div>
-
-    <div class="profile-detail">
-      <span class="profile-label">Email</span>
-      <span>{{ currentUser.email }}</span>
-    </div>
-
-    <div class="profile-detail">
-      <span class="profile-label">Roles</span>
-      <div class="profile-roles">
-        <span class="chip" *ngFor="let role of currentUser.roles">{{ role }}</span>
-      </div>
-    </div>
-  </div>
-
-  <ng-template #loggedOut>
+  } @else {
     <div class="empty-state">
       <mat-icon>lock</mat-icon>
       <p>Please sign in to view your profile.</p>
       <a routerLink="/login" class="link-action">Sign in</a>
     </div>
-  </ng-template>
+  }
+
 </div>

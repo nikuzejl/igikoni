@@ -42,6 +42,7 @@ public class StripeController {
         Session session = Session.create(params);
         Map<String, String> responseData = new HashMap<>();
         responseData.put("id", session.getId());
+        responseData.put("url", session.getUrl());
         JSONObject jsonObject = new JSONObject();
         for (String key : responseData.keySet()) {
             jsonObject.put(key, responseData.get(key));

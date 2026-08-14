@@ -3,33 +3,44 @@
     <h2>Welcome back</h2>
     <p class="auth-subtitle">Sign in to your Igikoni account</p>
 
-    <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" name="email" [(ngModel)]="form.email" required #email="ngModel" />
-        <mat-error *ngIf="email.errors?.['required']">Email is required</mat-error>
-      </mat-form-field>
+    @if (!isLoggedIn) {
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" name="email" [(ngModel)]="form.email" required #email="ngModel" />
+          @if (email.errors?.['required']) {
+            <mat-error>Email is required</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel" />
+          @if (password.errors?.['required']) {
+            <mat-error>Password is required</mat-error>
+          }
+          @if (password.errors?.['minlength']) {
+            <mat-error>Password must be at least 6 characters</mat-error>
+          }
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="submit-btn" type="submit">Sign in</button>
+        @if (f.submitted && isLoginFailed) {
+          <div class="form-alert form-alert--error">
+            Login failed: {{ errorMessage }}
+          </div>
+        }
+      </form>
+    }
 
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel" />
-        <mat-error *ngIf="password.errors?.['required']">Password is required</mat-error>
-        <mat-error *ngIf="password.errors?.['minlength']">Password must be at least 6 characters</mat-error>
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" class="submit-btn" type="submit">Sign in</button>
-
-      <div *ngIf="f.submitted && isLoginFailed" class="form-alert form-alert--error">
-        Login failed: {{ errorMessage }}
+    @if (isLoggedIn) {
+      <div class="form-alert form-alert--success">
+        Logged in as {{ roles }}.
       </div>
-    </form>
+    }
 
-    <div class="form-alert form-alert--success" *ngIf="isLoggedIn">
-      Logged in as {{ roles }}.
-    </div>
-
-    <p class="auth-footer" *ngIf="!isLoggedIn">
-      Don't have an account? <a routerLink="/register">Create one</a>
-    </p>
+    @if (!isLoggedIn) {
+      <p class="auth-footer">
+        Don't have an account? <a routerLink="/register">Create one</a>
+      </p>
+    }
   </div>
 </div>

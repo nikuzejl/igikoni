@@ -5,9 +5,10 @@ import { HttpService } from 'src/app/services/http.service'
 import { environment } from 'src/environments/environment'
 
 @Component({
-  selector: 'app-sucess',
-  templateUrl: './sucess.component.html',
-  styleUrls: ['./sucess.component.css']
+    selector: 'app-sucess',
+    templateUrl: './sucess.component.html',
+    styleUrls: ['./sucess.component.css'],
+    standalone: false
 })
 export class SucessComponent {
   orderNumber: any

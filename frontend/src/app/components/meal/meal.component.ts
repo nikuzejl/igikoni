@@ -7,9 +7,10 @@ import { MatDialog } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
-  selector: 'app-meal',
-  templateUrl: './meal.component.html',
-  styleUrls: ['./meal.component.css']
+    selector: 'app-meal',
+    templateUrl: './meal.component.html',
+    styleUrls: ['./meal.component.css'],
+    standalone: false
 })
 
 export class MealComponent implements OnInit {

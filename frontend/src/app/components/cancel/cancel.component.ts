@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router'
 import { environment } from 'src/environments/environment'
 
 @Component({
-  selector: 'app-cancel',
-  templateUrl: './cancel.component.html',
-  styleUrls: ['./cancel.component.css']
+    selector: 'app-cancel',
+    templateUrl: './cancel.component.html',
+    styleUrls: ['./cancel.component.css'],
+    standalone: false
 })
 export class CancelComponent {
   orderNumber: any

@@ -3,9 +3,10 @@ import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-credentials',
-  templateUrl: './credentials.component.html',
-  styleUrls: ['./credentials.component.css']
+    selector: 'app-credentials',
+    templateUrl: './credentials.component.html',
+    styleUrls: ['./credentials.component.css'],
+    standalone: false
 })
 export class CredentialsComponent {
   signedIn = false

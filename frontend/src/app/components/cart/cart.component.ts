@@ -1,13 +1,13 @@
 import { CartService } from '../../services/cart.service'
 import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
-import { loadStripe } from '@stripe/stripe-js'
 import { environment } from 'src/environments/environment'
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css'],
+    selector: 'app-cart',
+    templateUrl: './cart.component.html',
+    styleUrls: ['./cart.component.css'],
+    standalone: false
 })
 export class CartComponent implements OnInit {
   cartItems: any[] = []
@@ -15,7 +15,6 @@ export class CartComponent implements OnInit {
   totalPrice: number = 0
   placedOrder: boolean = false
   orderId: any | undefined
-  stripePromise = loadStripe(environment.STRIPE_PUBLIC_KEY)
   showSpinner = false
 
   constructor(private cartService: CartService, private http: HttpClient) { }
@@ -83,19 +82,11 @@ export class CartComponent implements OnInit {
       successUrl: environment.clientUrl + '/#/success/' + orderId
     }
 
-    const stripe = await this.stripePromise
-
-    if (stripe) {
-      this.http
-        .post(environment.serverUrl + '/api/v1/payment/submit', payment)
-        .subscribe((data: any) => {
-          this.showSpinner = false
-          stripe.redirectToCheckout({
-            sessionId: data.id,
-          })
-        })
-    } else {
-      console.error('Stripe is not initialized.')
-    }
+    this.http
+      .post(environment.serverUrl + '/api/v1/payment/submit', payment)
+      .subscribe((data: any) => {
+        this.showSpinner = false
+        window.location.assign(data.url)
+      })
   }
 }

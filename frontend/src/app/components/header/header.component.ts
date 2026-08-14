@@ -4,9 +4,10 @@ import { CartService } from 'src/app/services/cart.service'
 import { StorageService } from 'src/app/services/storage.service'
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css'],
+    standalone: false
 })
 export class HeaderComponent {
   @Output() filter = new EventEmitter<string>()

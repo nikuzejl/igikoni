@@ -19,11 +19,15 @@
     <nav class="header-actions">
       <button class="action-btn" (click)="profile()" matTooltip="Account">
         <mat-icon>person</mat-icon>
-        <span class="action-label" *ngIf="isLoggedIn">{{ user.firstName }}</span>
+        @if (isLoggedIn) {
+          <span class="action-label">{{ user.firstName }}</span>
+        }
       </button>
       <button class="action-btn cart-btn" (click)="navigateToCart()" matTooltip="Cart">
         <mat-icon>shopping_cart</mat-icon>
-        <span class="cart-badge" *ngIf="cartItems.length > 0">{{ cartItems.length }}</span>
+        @if (cartItems.length > 0) {
+          <span class="cart-badge">{{ cartItems.length }}</span>
+        }
       </button>
     </nav>
   </div>
